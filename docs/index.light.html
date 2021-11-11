@@ -1,0 +1,107 @@
+<style>
+  :root {
+    --hexagon: "⬣";
+    --color-primary: 255, 255, 0;
+    --color-secondary: 0, 0, 0;
+    --color-tertiary: 0, 0, 150;
+  }
+
+  @font-face {
+    font-family: "Roobert";
+    src: url("/fonts/Roobert-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  @keyframes colorChange {
+    from { /* radial-gradient(farthest-corner at top right, ..) */
+      background-position: left top;
+      background-size:200% 100%;
+    
+    }
+    49.9% {
+      background-position:left top;  
+    }
+    50% { /* radial-gradient(farthest-corner at top center, ..) */
+      background-size:100% 100%;
+    }
+    50.1% {
+      background-position:right top; 
+    }
+    to { /* radial-gradient(farthest-corner at top left, ..) */
+      background-position:right top;
+      background-size:200% 100%;
+    }
+   }
+
+  html {
+    overflow: hidden;
+    font-weight: bold;
+    font-family: Roobert, sans-serif;
+  }
+
+  body {
+    background: rgb(var(--color-tertiary));
+    background: radial-gradient(
+      farthest-corner at 0 -20vh,
+      #dddddd 0%,
+      #ffb3ff 8%,
+      #ff33ff 24.5%,
+      #800080 62.5%,
+      #b300b3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    animation: colorChange 20s infinite alternate linear;
+  }
+
+  /*
+   * Hexagons
+   */
+  body::before, body::after {
+    color: rgba(0 0 0 /0.3);
+    content: var(--hexagon);
+    font-size: 100vmax;
+    position: absolute;
+  }
+
+  body::before {
+    bottom: -25vh;
+    left: -15vmax;
+    color: rgba(255 255 0 /1);
+    opacity: 0.3;
+  }
+
+  body::after {
+    top: -30vh;
+    right: -15vmax;
+    color: rgba(0 0 0 /0.2);
+  }
+
+  /*
+   * Text
+   */
+  html::before, html::after {
+    font-size: 9em;
+    font-family: sans, Roobert;
+    text-shadow: 0 0 4vw rgba(0 0 0 /.4);
+    z-index: 10;
+  }
+  html::before {
+    content: "hex";
+    position: absolute;
+    top: 20vh;
+    left: 20vw;
+    color: rgba(var(--color-primary), 0.5);
+  }
+  
+  html::after {
+    content: "labs";
+    position: absolute;
+    bottom: 20vh;
+    right: 20vw;
+    color: rgba(var(--color-secondary), 0.5);
+  }
+</style>
